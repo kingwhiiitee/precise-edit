@@ -1,4 +1,4 @@
-# precise-edit (BetterAI): Codex execpolicy rules.
+# precise-edit: Codex execpolicy rules.
 # Install to ~/.codex/rules/precise-edit.rules, then restart Codex.
 # In-place stream editors rewrite whole files blindly; edits go through apply_patch.
 # Rules match argv prefixes only, so variants such as `sed -E -i` are left to the

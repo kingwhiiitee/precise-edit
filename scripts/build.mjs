@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-// Builds dist/ (skill zips, the .plugin, the userscript, the self-contained converter page).
+// Builds dist/ (the skill zip and the .plugin).
 // No dependencies and reproducible bytes: entries are sorted and timestamps fixed, so do not add
-// anything time- or machine-dependent. New skills need a pack() line here.
+// anything time- or machine-dependent.
 //
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,7 +11,6 @@ import { fileURLToPath } from 'node:url';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PLUGIN = path.join(REPO, 'plugins', 'precise-edit');
-const LATEX = path.join(REPO, 'Latex Fix');
 const DIST = path.join(REPO, 'dist');
 
 const CRC_TABLE = Array.from({ length: 256 }, (_, n) => {
@@ -100,16 +99,3 @@ function pack(dir, prefix, out) {
 fs.mkdirSync(DIST, { recursive: true });
 pack(path.join(PLUGIN, 'skills', 'precise-edit'), 'precise-edit/', path.join(DIST, 'precise-edit-skill.zip'));
 pack(PLUGIN, '', path.join(DIST, 'precise-edit.plugin'));
-pack(path.join(LATEX, 'skills', 'latex-fix'), 'latex-fix/', path.join(DIST, 'latex-fix-skill.zip'));
-pack(path.join(REPO, 'plugins', 'adaptive-learning-coach', 'skills', 'adaptive-learning-coach'), 'adaptive-learning-coach/', path.join(DIST, 'adaptive-learning-coach-skill.zip'));
-
-const userscript = fs.readFileSync(path.join(LATEX, 'userscript', 'chatgpt-latex-fix.user.js'), 'utf8');
-fs.writeFileSync(path.join(DIST, 'chatgpt-latex-fix.user.js'), userscript);
-console.log('dist/chatgpt-latex-fix.user.js');
-
-// Must match converter.html byte for byte; the build fails loudly otherwise.
-const TAG = '<script src="../userscript/chatgpt-latex-fix.user.js"></script>';
-const page = fs.readFileSync(path.join(LATEX, 'web', 'converter.html'), 'utf8');
-if (!page.includes(TAG) || userscript.includes('</script')) throw new Error('cannot inline the userscript into converter.html');
-fs.writeFileSync(path.join(DIST, 'latex-fix-converter.html'), page.replace(TAG, () => `<script>\n${userscript}</script>`));
-console.log('dist/latex-fix-converter.html');

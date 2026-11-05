@@ -10,4 +10,4 @@ Makes the agent change existing files with exact-match edits (`Edit` / `str_repl
 | `hooks/hooks.json` | SessionStart policy reminder + PreToolUse guard on `Write`, `Bash`, `PowerShell` |
 | `scripts/guard.mjs` | The guard (Node.js 18+). Config: `PRECISE_EDIT_MODE=block\|warn\|off`, `.precise-edit.json` |
 
-Full documentation / 完整文档: https://github.com/kingwhiiitee/BetterAI
+Full documentation / 完整文档: https://github.com/kingwhiiitee/precise-edit

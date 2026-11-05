@@ -2,9 +2,9 @@
 name: precise-edit
 description: Make minimal, exact-match edits to existing files instead of rewriting them. Use whenever changing an existing file, document, artifact or canvas (code, config, Markdown, prose) - with Edit or str_replace, Codex apply_patch Update hunks, or targeted canvas updates. Covers choosing a unique anchor, recovering when a replacement does not match (whitespace, tabs, CRLF, duplicates), and when a full rewrite is acceptable. Not needed when creating a brand-new file.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   author: WH1T3K1NG
-  homepage: https://github.com/kingwhiiitee/BetterAI
+  homepage: https://github.com/kingwhiiitee/precise-edit
 ---
 
 # Precise Edit

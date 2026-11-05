@@ -1,13 +1,13 @@
 <div align="center">
 
-# BetterAI
+# precise-edit
 
-**Portable fixes for AI assistants: Claude, Claude Code, Codex and ChatGPT.**<br>
-**可复用的 AI 助手修复包:适用于 Claude、Claude Code、Codex 与 ChatGPT。**
+**Stop AI agents from rewriting whole files: Claude, Claude Code, Codex and ChatGPT.**<br>
+**阻止 AI 代理整文件重写:适用于 Claude、Claude Code、Codex 与 ChatGPT。**
 
 [English](#english) · [中文](#中文)
 
-[![test](https://github.com/kingwhiiitee/BetterAI/actions/workflows/test.yml/badge.svg)](https://github.com/kingwhiiitee/BetterAI/actions/workflows/test.yml)
+[![test](https://github.com/kingwhiiitee/precise-edit/actions/workflows/test.yml/badge.svg)](https://github.com/kingwhiiitee/precise-edit/actions/workflows/test.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 </div>
@@ -15,8 +15,6 @@
 ---
 
 ## English
-
-### Fix #1: `precise-edit` stops AI agents from rewriting whole files
 
 **The problem.** Ask an agent to change three lines and it often regenerates the entire file, using `Write`/`create_file`, `cat <<EOF > file`, `sed -i`, `Set-Content`, a Python one-liner, or a Codex `*** Add File:` over an existing path. The result is unrelated code silently lost or "tidied", earlier fixes reverted, broken formatting and line endings, huge unreviewable diffs, and wasted tokens.
 
@@ -53,34 +51,34 @@ The guard hook needs **Node.js 18+** on `PATH`. The skill and instructions work 
 Copy the prompt below into any AI tool: Claude Code, Codex, Claude Cowork, Claude.ai, ChatGPT, Cursor, Gemini CLI and so on. The AI works out which tool it is running in and installs the matching version. If it can't install anything itself (for example in plain chat), it gives you the manual steps. It shows you every configuration change and waits for your OK before applying it.
 
 ```text
-Install the "precise-edit" fix from https://github.com/kingwhiiitee/BetterAI for the AI tool you are running in right now. It makes AI agents change existing files with exact-match edits (Edit / str_replace / apply_patch) instead of rewriting whole files.
+Install the "precise-edit" fix from https://github.com/kingwhiiitee/precise-edit for the AI tool you are running in right now. It makes AI agents change existing files with exact-match edits (Edit / str_replace / apply_patch) instead of rewriting whole files.
 
 Rules:
-- Only use files from github.com/kingwhiiitee/BetterAI (releases: https://github.com/kingwhiiitee/BetterAI/releases/latest).
+- Only use files from github.com/kingwhiiitee/precise-edit (releases: https://github.com/kingwhiiitee/precise-edit/releases/latest).
 - Before changing any configuration outside the repository, show me the exact commands or file changes and wait for my confirmation.
 - Do not use sudo or administrator rights. Requirements: git and Node.js 18+ (check with `node --version`). If Node.js is missing, tell me before continuing.
 
 First identify which tool you are running in, then follow only the matching section.
 
 A. Claude Code (you can run shell commands and the `claude` CLI is available):
-   1. Run `claude plugin marketplace add kingwhiiitee/BetterAI`.
-   2. Run `claude plugin install precise-edit@betterai`.
-   3. Run `claude plugin list` and confirm precise-edit@betterai is enabled. Then tell me to start a new session.
+   1. Run `claude plugin marketplace add kingwhiiitee/precise-edit`.
+   2. Run `claude plugin install precise-edit@precise-edit`.
+   3. Run `claude plugin list` and confirm precise-edit@precise-edit is enabled. Then tell me to start a new session.
 
 B. Codex (CLI, IDE extension or app):
-   1. Clone the repository into <home>/.betterai/BetterAI, or run `git pull --ff-only` there if it already exists.
+   1. Clone the repository into <home>/.precise-edit, or run `git pull --ff-only` there if it already exists.
    2. In that folder run `node --test`. All tests must pass.
    3. Run `node scripts/install.mjs --codex --dry-run` and show me the output. After I confirm, run it again without `--dry-run`.
    4. Tell me to restart Codex, run /hooks and trust the "precise-edit" hook, because Codex skips untrusted hooks.
 
 C. Claude Cowork:
-   Download https://github.com/kingwhiiitee/BetterAI/releases/latest/download/precise-edit.plugin, save it to the outputs folder and present it to me so I can accept the plugin card. If you cannot download it, give me the link instead.
+   Download https://github.com/kingwhiiitee/precise-edit/releases/latest/download/precise-edit.plugin, save it to the outputs folder and present it to me so I can accept the plugin card. If you cannot download it, give me the link instead.
 
 D. Chat without a shell (Claude.ai, ChatGPT):
    You cannot install it yourself, so give me these steps:
-   - Claude.ai: download https://github.com/kingwhiiitee/BetterAI/releases/latest/download/precise-edit-skill.zip, then go to Settings → Capabilities → Skills → Upload skill.
+   - Claude.ai: download https://github.com/kingwhiiitee/precise-edit/releases/latest/download/precise-edit-skill.zip, then go to Settings → Capabilities → Skills → Upload skill.
    - ChatGPT Work / Business / Enterprise / Edu: upload the same zip via Skills → Create → Upload from your computer.
-   - Any plan: paste the instruction block from https://github.com/kingwhiiitee/BetterAI/blob/main/platforms/chatgpt/custom-instructions.md (ChatGPT) or https://github.com/kingwhiiitee/BetterAI/blob/main/platforms/claude-ai/instructions.md (Claude.ai) into custom instructions / personal preferences.
+   - Any plan: paste the instruction block from https://github.com/kingwhiiitee/precise-edit/blob/main/platforms/chatgpt/custom-instructions.md (ChatGPT) or https://github.com/kingwhiiitee/precise-edit/blob/main/platforms/claude-ai/instructions.md (Claude.ai) into custom instructions / personal preferences.
    Then follow that editing rule yourself for the rest of this conversation.
 
 E. Any other coding agent (Cursor, Gemini CLI, Windsurf, Cline, ...):
@@ -94,18 +92,18 @@ Finish with a short report: what you installed, where, and anything I still have
 Inside Claude Code:
 
 ```text
-/plugin marketplace add kingwhiiitee/BetterAI
-/plugin install precise-edit@betterai
+/plugin marketplace add kingwhiiitee/precise-edit
+/plugin install precise-edit@precise-edit
 ```
 
 Or from a shell:
 
 ```bash
-claude plugin marketplace add kingwhiiitee/BetterAI
+claude plugin marketplace add kingwhiiitee/precise-edit
 ```
 
 ```bash
-claude plugin install precise-edit@betterai
+claude plugin install precise-edit@precise-edit
 ```
 
 Start a new session afterwards. To install without the marketplace instead, run `node scripts/install.mjs --claude-code` from a clone. It copies the skill to `~/.claude/skills`, adds the hook to `~/.claude/settings.json` and a policy block to `~/.claude/CLAUDE.md`. Pick one method, not both.
@@ -113,7 +111,7 @@ Start a new session afterwards. To install without the marketplace instead, run 
 #### Codex
 
 ```bash
-git clone https://github.com/kingwhiiitee/BetterAI.git && cd BetterAI
+git clone https://github.com/kingwhiiitee/precise-edit.git && cd precise-edit
 ```
 
 ```bash
@@ -131,13 +129,13 @@ Then start `codex`, run `/hooks` and **trust** the precise-edit hook. Codex skip
 
 #### Claude.ai (chat)
 
-1. Download `precise-edit-skill.zip` from [Releases](https://github.com/kingwhiiitee/BetterAI/releases/latest).
+1. Download `precise-edit-skill.zip` from [Releases](https://github.com/kingwhiiitee/precise-edit/releases/latest).
 2. Go to Settings → Capabilities → Skills → Upload skill. Code execution must be enabled.
 3. Recommended: paste a block from [`platforms/claude-ai/instructions.md`](platforms/claude-ai/instructions.md) into your personal preferences or a Project's instructions.
 
 #### Claude Cowork
 
-Download `precise-edit.plugin` from [Releases](https://github.com/kingwhiiitee/BetterAI/releases/latest), drop it into a Cowork conversation and accept the plugin card. Cowork mainly uses the skill. The hook runs only if the Cowork environment has Node available, and fails open otherwise.
+Download `precise-edit.plugin` from [Releases](https://github.com/kingwhiiitee/precise-edit/releases/latest), drop it into a Cowork conversation and accept the plugin card. Cowork mainly uses the skill. The hook runs only if the Cowork environment has Node available, and fails open otherwise.
 
 #### ChatGPT
 
@@ -198,37 +196,28 @@ plugins/precise-edit/             the plugin (single source of truth)
   scripts/guard.mjs               the guard, shared by Claude Code and Codex
 platforms/                        paste-ready instructions per platform + Codex rules
 scripts/install.mjs               installer for Codex and Claude Code (manual mode)
-scripts/build.mjs                 builds the upload packages into dist/ (precise-edit and LaTeX Fix)
-Latex Fix/                        Fix #2: ChatGPT LaTeX rule, skill, userscript, converter
+scripts/build.mjs                 builds the upload packages into dist/
 tests/                            node:test suite (Linux, macOS, Windows in CI)
 ```
 
-### Fix #2: LaTeX Fix makes ChatGPT's formulas render and copy correctly
-
-**The problem.** ChatGPT's formulas sometimes render wrong (raw `\[ \]`, bare `[ ]` / `( )`, red errors), and their LaTeX can't be copied, especially in the desktop and mobile apps.
-
-**The fix.** One rule for your custom instructions. It limits the model to delimiters and commands ChatGPT renders, and makes every answer with formulas end with a copyable `latex` source block. Custom instructions live in your account, so the rule works on the web, in the desktop apps and in the iOS / Android apps. Optional extras: a skill, a chatgpt.com userscript and a converter page for pasting into Obsidian / Typora / Notion.
-
-Everything is in [`Latex Fix/`](Latex%20Fix/). Start with [`Latex Fix/chatgpt/custom-instructions.md`](Latex%20Fix/chatgpt/custom-instructions.md).
-
 ### Uninstall
 
-- Claude Code plugin: `/plugin uninstall precise-edit@betterai`
+- Claude Code plugin: `/plugin uninstall precise-edit@precise-edit`
+- Installed earlier from the old BetterAI marketplace? Remove it with `/plugin uninstall precise-edit@betterai`, then install from this repo as above.
 - Installer: `node scripts/install.mjs --uninstall --codex` (or `--claude-code`, `--all`). Every file the installer modified is backed up once as `*.bak-precise-edit`.
 
 ### Contributing
 
-New fixes are welcome and follow the same shape: one portable skill, an optional hook, and per-platform instructions. Run `npm test` and `node scripts/build.mjs` before opening a pull request.
+Issues and pull requests are welcome. Run `npm test` and `node scripts/build.mjs` before opening a pull request.
 
 ### License
 
 [MIT](LICENSE)
 
 ---
+---
 
 ## 中文
-
-### 修复 #1:`precise-edit`,阻止 AI 代理整文件重写
 
 **问题。** 你让代理改三行,它却常常把整个文件重新生成一遍。它会用 `Write`/`create_file`、`cat <<EOF > file`、`sed -i`、`Set-Content`、一段 Python 脚本,或者在 Codex 里对已存在的文件用 `*** Add File:`。后果是无关代码被悄悄删掉或"顺手整理"、之前的修复被回退、格式和换行符被破坏、diff 大到没法审查,还浪费 token。
 
@@ -265,34 +254,34 @@ Guard hook 需要 `PATH` 中有 **Node.js 18+**;skill 和指令不依赖 Node。
 把下面这段提示词复制给任意 AI 工具即可:Claude Code、Codex、Claude Cowork、Claude.ai、ChatGPT、Cursor、Gemini CLI 等都可以。AI 会先判断自己运行在哪个工具里,然后安装对应的版本。如果它自己无法安装(比如纯对话环境),就会把手动步骤告诉你。每一处配置改动它都会先展示给你,等你确认后才执行。
 
 ```text
-请为你当前所在的 AI 工具安装 https://github.com/kingwhiiitee/BetterAI 中的 "precise-edit" 修复。它让 AI 代理用精确匹配的编辑(Edit / str_replace / apply_patch)修改已有文件,而不是整文件重写。
+请为你当前所在的 AI 工具安装 https://github.com/kingwhiiitee/precise-edit 中的 "precise-edit" 修复。它让 AI 代理用精确匹配的编辑(Edit / str_replace / apply_patch)修改已有文件,而不是整文件重写。
 
 规则:
-- 只使用来自 github.com/kingwhiiitee/BetterAI 的文件(发布页:https://github.com/kingwhiiitee/BetterAI/releases/latest)。
+- 只使用来自 github.com/kingwhiiitee/precise-edit 的文件(发布页:https://github.com/kingwhiiitee/precise-edit/releases/latest)。
 - 修改仓库以外的任何配置之前,先把具体命令或文件改动展示给我,等我确认后再执行。
 - 不要使用 sudo 或管理员权限。需要 git 和 Node.js 18+(用 `node --version` 检查);如果没有 Node.js,先告诉我再继续。
 
 先判断你运行在哪个工具里,然后只执行对应的那一节。
 
 A. Claude Code(你能执行 shell 命令,并且有 `claude` 命令行):
-   1. 运行 `claude plugin marketplace add kingwhiiitee/BetterAI`。
-   2. 运行 `claude plugin install precise-edit@betterai`。
-   3. 运行 `claude plugin list`,确认 precise-edit@betterai 已启用,然后提醒我开启一个新会话。
+   1. 运行 `claude plugin marketplace add kingwhiiitee/precise-edit`。
+   2. 运行 `claude plugin install precise-edit@precise-edit`。
+   3. 运行 `claude plugin list`,确认 precise-edit@precise-edit 已启用,然后提醒我开启一个新会话。
 
 B. Codex(CLI、IDE 扩展或桌面端):
-   1. 把仓库克隆到 <用户主目录>/.betterai/BetterAI;如果已经存在,就在该目录运行 `git pull --ff-only`。
+   1. 把仓库克隆到 <用户主目录>/.precise-edit;如果已经存在,就在该目录运行 `git pull --ff-only`。
    2. 在该目录运行 `node --test`,所有测试必须通过。
    3. 运行 `node scripts/install.mjs --codex --dry-run` 并把输出展示给我。我确认后,去掉 `--dry-run` 再运行一次。
    4. 提醒我重启 Codex,运行 /hooks 并信任(trust)"precise-edit" hook,因为 Codex 会跳过未被信任的 hook。
 
 C. Claude Cowork:
-   下载 https://github.com/kingwhiiitee/BetterAI/releases/latest/download/precise-edit.plugin,保存到 outputs 文件夹并展示给我,让我在插件卡片上确认安装。如果无法下载,就把链接给我。
+   下载 https://github.com/kingwhiiitee/precise-edit/releases/latest/download/precise-edit.plugin,保存到 outputs 文件夹并展示给我,让我在插件卡片上确认安装。如果无法下载,就把链接给我。
 
 D. 没有 shell 的对话环境(Claude.ai、ChatGPT):
    你无法自己安装,请把以下步骤告诉我:
-   - Claude.ai:下载 https://github.com/kingwhiiitee/BetterAI/releases/latest/download/precise-edit-skill.zip,然后进入 设置 → Capabilities → Skills → Upload skill。
+   - Claude.ai:下载 https://github.com/kingwhiiitee/precise-edit/releases/latest/download/precise-edit-skill.zip,然后进入 设置 → Capabilities → Skills → Upload skill。
    - ChatGPT Work / Business / Enterprise / Edu:通过 Skills → Create → Upload from your computer 上传同一个 zip。
-   - 任意套餐:把 https://github.com/kingwhiiitee/BetterAI/blob/main/platforms/chatgpt/custom-instructions.md(ChatGPT)或 https://github.com/kingwhiiitee/BetterAI/blob/main/platforms/claude-ai/instructions.md(Claude.ai)中的指令粘贴到自定义指令 / 个人偏好里。
+   - 任意套餐:把 https://github.com/kingwhiiitee/precise-edit/blob/main/platforms/chatgpt/custom-instructions.md(ChatGPT)或 https://github.com/kingwhiiitee/precise-edit/blob/main/platforms/claude-ai/instructions.md(Claude.ai)中的指令粘贴到自定义指令 / 个人偏好里。
    然后在本次对话的剩余部分里,你自己也要遵守这条编辑规则。
 
 E. 其他编程代理(Cursor、Gemini CLI、Windsurf、Cline 等):
@@ -306,18 +295,18 @@ E. 其他编程代理(Cursor、Gemini CLI、Windsurf、Cline 等):
 在 Claude Code 中执行:
 
 ```text
-/plugin marketplace add kingwhiiitee/BetterAI
-/plugin install precise-edit@betterai
+/plugin marketplace add kingwhiiitee/precise-edit
+/plugin install precise-edit@precise-edit
 ```
 
 或在终端中执行:
 
 ```bash
-claude plugin marketplace add kingwhiiitee/BetterAI
+claude plugin marketplace add kingwhiiitee/precise-edit
 ```
 
 ```bash
-claude plugin install precise-edit@betterai
+claude plugin install precise-edit@precise-edit
 ```
 
 安装后开启新会话即可。如果不想用 marketplace,也可以克隆仓库后运行 `node scripts/install.mjs --claude-code`:它会把 skill 复制到 `~/.claude/skills`,把 hook 写入 `~/.claude/settings.json`,并在 `~/.claude/CLAUDE.md` 中加入规则块。两种方式二选一,不要同时用。
@@ -325,7 +314,7 @@ claude plugin install precise-edit@betterai
 #### Codex
 
 ```bash
-git clone https://github.com/kingwhiiitee/BetterAI.git && cd BetterAI
+git clone https://github.com/kingwhiiitee/precise-edit.git && cd precise-edit
 ```
 
 ```bash
@@ -343,13 +332,13 @@ node scripts/install.mjs --codex
 
 #### Claude.ai(对话)
 
-1. 从 [Releases](https://github.com/kingwhiiitee/BetterAI/releases/latest) 下载 `precise-edit-skill.zip`。
+1. 从 [Releases](https://github.com/kingwhiiitee/precise-edit/releases/latest) 下载 `precise-edit-skill.zip`。
 2. 进入 设置 → Capabilities(功能)→ Skills → Upload skill(需要开启代码执行)。
 3. 建议:把 [`platforms/claude-ai/instructions.md`](platforms/claude-ai/instructions.md) 中的一段粘贴到个人偏好或某个 Project 的指令里。
 
 #### Claude Cowork
 
-从 [Releases](https://github.com/kingwhiiitee/BetterAI/releases/latest) 下载 `precise-edit.plugin`,拖进 Cowork 对话,在插件卡片上点击安装。Cowork 主要依靠 skill 生效;hook 只有在 Cowork 环境里有 Node 时才会运行,否则自动放行。
+从 [Releases](https://github.com/kingwhiiitee/precise-edit/releases/latest) 下载 `precise-edit.plugin`,拖进 Cowork 对话,在插件卡片上点击安装。Cowork 主要依靠 skill 生效;hook 只有在 Cowork 环境里有 Node 时才会运行,否则自动放行。
 
 #### ChatGPT
 
@@ -410,27 +399,19 @@ plugins/precise-edit/             插件本体(唯一的源文件)
   scripts/guard.mjs               guard 脚本,Claude Code 与 Codex 共用
 platforms/                        各平台可直接粘贴的指令 + Codex 规则
 scripts/install.mjs               Codex / Claude Code 安装器(手动模式)
-scripts/build.mjs                 构建 dist/ 中的上传包(precise-edit 与 LaTeX Fix)
-Latex Fix/                        修复 #2:ChatGPT LaTeX 规则、skill、油猴脚本、转换网页
+scripts/build.mjs                 构建 dist/ 中的上传包
 tests/                            node:test 测试(CI 覆盖 Linux、macOS、Windows)
 ```
 
-### 修复 #2:LaTeX Fix,让 ChatGPT 的公式正确渲染、可以复制
-
-**问题。** ChatGPT 的公式有时渲染错误(原始的 `\[ \]`、裸的 `[ ]` / `( )`、红色报错),而且公式的 LaTeX 无法复制,在桌面端和手机 App 上尤其明显。
-
-**修复。** 一条写进自定义指令的规则:限定模型只用 ChatGPT 能渲染的定界符和命令,并让每个含公式的回答末尾附上可复制的 `latex` 源码块。自定义指令保存在账号里,所以网页、桌面端和 iOS / Android App 都生效。可选增强:skill、chatgpt.com 油猴脚本,以及把公式转换成 Obsidian / Typora / Notion 格式的转换网页。
-
-全部内容在 [`Latex Fix/`](Latex%20Fix/)。从 [`Latex Fix/chatgpt/custom-instructions.md`](Latex%20Fix/chatgpt/custom-instructions.md) 开始。
-
 ### 卸载
 
-- Claude Code 插件:`/plugin uninstall precise-edit@betterai`
+- Claude Code 插件:`/plugin uninstall precise-edit@precise-edit`
+- 以前从旧的 BetterAI 插件市场装过?先运行 `/plugin uninstall precise-edit@betterai`,再按上面的方法从本仓库安装。
 - 安装器:`node scripts/install.mjs --uninstall --codex`(或 `--claude-code`、`--all`)。安装器修改过的每个文件都会备份一次,备份名为 `*.bak-precise-edit`。
 
 ### 贡献
 
-欢迎提交新的修复,沿用相同结构即可:一个可移植的 skill、可选的 hook,以及各平台的指令。提交 PR 前请运行 `npm test` 和 `node scripts/build.mjs`。
+欢迎提 issue 和 PR。提交 PR 前请运行 `npm test` 和 `node scripts/build.mjs`。
 
 ### 许可证
 

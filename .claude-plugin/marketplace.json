@@ -1,6 +1,6 @@
 {
-  "name": "betterai",
-  "description": "Portable fixes for AI assistants",
+  "name": "precise-edit",
+  "description": "Make AI agents use exact-match edits instead of rewriting whole files",
   "owner": {
     "name": "WH1T3K1NG"
   },
@@ -9,15 +9,8 @@
       "name": "precise-edit",
       "source": "./plugins/precise-edit",
       "description": "Make agents use exact-match edits (Edit / str_replace / apply_patch) and block whole-file rewrites of existing files",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "keywords": ["edit", "str_replace", "apply_patch", "hooks", "guardrail"]
-    },
-    {
-      "name": "adaptive-learning-coach",
-      "source": "./plugins/adaptive-learning-coach",
-      "description": "Adaptive study coach for time-limited, exam-oriented learners: picks diagnose / explain / practice / review by expected learning gain",
-      "version": "0.2.4",
-      "keywords": ["learning", "tutor", "study", "exam"]
     }
   ]
 }

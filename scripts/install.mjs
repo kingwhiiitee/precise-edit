@@ -14,6 +14,8 @@ const PLUGIN = path.join(REPO, 'plugins', 'precise-edit');
 const SKILL_SRC = path.join(PLUGIN, 'skills', 'precise-edit');
 const GUARD_SRC = path.join(PLUGIN, 'scripts', 'guard.mjs');
 const GUARD_MARK = '/precise-edit/guard.mjs';
+// "(BetterAI)" is the old repo name. Keep it: uninstall and reinstall find blocks written by older installs
+// by this exact string, and platforms/*/CLAUDE.md|AGENTS.md must start and end with the same markers.
 const BEGIN = '<!-- BEGIN precise-edit (BetterAI) -->';
 const END = '<!-- END precise-edit (BetterAI) -->';
 
